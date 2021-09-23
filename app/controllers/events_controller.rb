@@ -15,10 +15,10 @@ class EventsController < ApplicationController
 
   def create 
     @event = Event.new(event_params)
-
     if @event.save
       redirect_to events_path
     else 
+      byebug
       flash[:error] = "There was an error creating this event"
     end
   end

@@ -1,5 +1,4 @@
 class Event < ApplicationRecord
-  validates :name, :address, :price, :rating, :phone, :image_url, :url, :user_id, presence: true
-
+  validates :user_id, uniqueness: {scope: :name}
   belongs_to :user
 end
