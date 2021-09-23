@@ -1,0 +1,8 @@
+<% @places.each do |place|%>
+<h2> <a href=<%= place["url"] %> target="_blank"><%= place["name"] %></a>  </h2>
+  <% if !place["image_url"].nil? %>
+    <a href=<%=place["image_url"] %>>
+      <img class="image" border="0" src=<%=place["image_url"] %> >
+    </a>
+  <% end %>
+<% end %>
