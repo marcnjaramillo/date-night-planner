@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :user
+
   devise_scope :user do
     authenticated :user do
       root "welcome#index", as: "authenticated_root"
@@ -9,7 +11,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/search', to: 'events#new'
-  post '/search', to: 'events#show'
+  get '/', to: 'welcome#index'
+  post '/', to: 'welcome#index'
 
 end
