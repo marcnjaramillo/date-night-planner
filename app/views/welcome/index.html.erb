@@ -1,28 +1,9 @@
-<%= button_to "logout", destroy_user_session_path, method: :delete  %>
-
-<nav class="navbar">
-    <span class="navbar-toggle" id="js-navbar-toggle">
-        <i class="fas fa-bars"></i>
-    </span>
-    <a href="#" class="logo">Event Explorer</a>
-    <ul class="main-nav" id="js-menu">
-        <li>
-            <a href="#" class="nav-links">Log In</a>
-        </li>
-        <li>
-            <a href="#" class="nav-links">Sign Up</a>
-        </li>
-        <li>
-            <a href="#" class="nav-links">About/Contact</a>
-        </li>
-    </ul>
-</nav>
 <section class="section mg">
     <div class="container pd">
         <div class="search">
           <h2>Search for fun things to do!</h2>
           <div id="searchform">
-            <%= form_tag authenticated_root_path, method: :post do %>
+            <%= form_with url: authenticated_root_path, method: :post do %>
               <%= label_tag(:term, "") %>
               <%= text_field_tag(:term) %>
               <%= label_tag(:location, "") %>
@@ -44,7 +25,18 @@
                     <h2><%= place["name"] %></h2>
                     <p><%= place["location"]["address1"] %> <%= place["location"]["address2"]%> <%= place["location"]["address3"] %></p>
                     <p><%= place["location"]["city"]%>, <%= place["location"]["state"]%> <%= place["location"]["zipcode"] %></p>
-                    <button id="add"> add event </button>
+                    <form action="<%= events_path %>" method="POST"> 
+                      <input type="hidden" name="authenticity_token" value=<%= form_authenticity_token %> >                   
+                      <input type="hidden" name="event[image_url]" value=<%= place["image_url"] %> >
+                      <input type="hidden" name="event[name]" value= "<%= place["name"] %>" >
+                      <input type="hidden" name="event[address]" value= "<%= place["location"]["address1"] %>" >
+                      <input type="hidden" name="event[rating]" value= "<%= place["rating"] %>" >
+                      <input type="hidden" name="event[price]" value= "<%= place["price"] %>" >
+                      <input type="hidden" name="event[url]" value= "<%= place["url"] %>" >
+                      <input type="hidden" name="event[phone]" value= "<%= place["phone"] %>" >
+                      <input type="hidden" name="event[user_id]" value= "<%= current_user[:id] %>" >
+                      <button id="add">Add Event</button>
+                    </form>
                   </div>
                 </li>
               <% end %>
