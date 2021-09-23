@@ -3,7 +3,6 @@ class EventsController < ApplicationController
 
   def index 
     @events = Event.all 
-    render
   end
 
   def show
@@ -14,8 +13,10 @@ class EventsController < ApplicationController
     event = Event.new(event_params)
 
     if event.save
-      render 
+      byebug
+      render "welcome/index"
     else 
+      byebug
       flash[:error] = "There was an error creating this event"
     end
   end

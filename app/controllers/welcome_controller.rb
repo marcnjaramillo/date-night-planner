@@ -7,6 +7,7 @@ class WelcomeController < ApplicationController
     else      
       results = YelpService.search(term, location)
       @places = results["businesses"]
+      byebug
     end
   end
 end

@@ -44,7 +44,21 @@
                     <h2><%= place["name"] %></h2>
                     <p><%= place["location"]["address1"] %> <%= place["location"]["address2"]%> <%= place["location"]["address3"] %></p>
                     <p><%= place["location"]["city"]%>, <%= place["location"]["state"]%> <%= place["location"]["zipcode"] %></p>
-                    <button id="add"> add event </button>
+                    <form action="<%= events_url %>" method="POST">
+                    <input
+                      type="hidden"
+                      name="authenticity_token"
+                      value="<%= form_authenticity_token %>">
+                    <input type="hidden" name="event[name]" value= <%= place["name"] %> >
+                    <input type="hidden" name="event[address]" value= <%= place["location"]["display_address"].join(" ") || "unavailable" %> >
+                    <input type="hidden" name="event[price]" value= <%= place["price"] %> >
+                    <input type="hidden" name="event[rating]" value= <%= place["rating"] %> >
+                    <input type="hidden" name="event[phone]" value= <%= place["phone"] %> >
+                    <input type="hidden" name="event[image_url]" value= <%= place["image_url"] %> >
+                    <input type="hidden" name="event[url]" value= <%= place["url"] %> >
+                    <input type="hidden" name="event[user_id]" value= <%= current_user[:id] %> >
+                      <button id="add"> add event </button>
+                    </form>
                   </div>
                 </li>
               <% end %>
