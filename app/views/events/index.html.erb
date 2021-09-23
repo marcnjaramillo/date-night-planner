@@ -1,0 +1,17 @@
+<ul id="EventList">
+  <% if @events.nil? %>
+    <p>Awesome date night ideas will show up here</p>
+  <% else %>
+    <% @events.each do |event|%>
+      <li class="event">
+        <div class="eventImg">
+          <img src=<%=event["image_url"] %> >
+        </div>
+        <div class="eventInfo">
+          <h2><%= event["name"] %></h2>
+          <p><%= event["address"] %></p>
+        </div>
+      </li>
+    <% end %>
+  <% end %>
+  </ul>

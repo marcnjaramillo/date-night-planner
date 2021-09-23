@@ -1,7 +1,7 @@
 class EventsController < ApplicationController 
   before_action :find_event, only: [:show, :update, :destroy]
 
-  def index 
+  def index
     @events = Event.all 
   end
 
@@ -9,12 +9,14 @@ class EventsController < ApplicationController
     render
   end
 
-  def create 
-    event = Event.new(event_params)
+  def new
+  end
+  
 
-    if event.save
-      byebug
-      render "welcome/index"
+  def create 
+    @event = Event.new(event_params)
+    if @event.save
+      redirect_to events_path
     else 
       byebug
       flash[:error] = "There was an error creating this event"
