@@ -11,6 +11,10 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :events
+
+  resources :venues
+
   get '/', to: 'welcome#index'
   post '/', to: 'welcome#index'
 
