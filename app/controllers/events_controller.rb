@@ -1,0 +1,44 @@
+class EventsController < ApplicationController 
+  before_action :find_event, only: [:show, :update, :destroy]
+
+  def index 
+    @events = Event.all 
+    render
+  end
+
+  def show
+    render
+  end
+
+  def create 
+    event = Event.new(event_params)
+
+    if event.save
+      render 
+    else 
+      flash[:error] = "There was an error creating this event"
+    end
+  end
+
+  def update 
+    if @event.update(event_params)
+      render 
+    else 
+      flash[:error] = "There was an error updating this event"
+    end
+  end
+
+  def destroy 
+    @event.destroy 
+    render     
+  end
+
+  private 
+  def event_params
+    params.require(:event).permit(:name, :address, :price, :rating, :phone, :image_url, :url, :user_id)
+  end
+
+  def find_event
+    @event = Event.find_by(id: params[:id])
+  end
+end
