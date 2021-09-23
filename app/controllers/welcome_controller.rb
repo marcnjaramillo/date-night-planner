@@ -1,4 +1,5 @@
-class WelcomeController < ApplicationController
-    def index
-    end
+class WelcomeController < ApplicationController 
+  def index 
+    render :index
+  end
 end
