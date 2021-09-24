@@ -11,28 +11,20 @@ Date-Night-Planner is a rails application to help you choose date options from t
 ## How To View:
 - Clone repository within your editor:`git clone https://github.com/marcnjaramillo/date-night-planner.git`
 
-- Make sure you have the following dependencies
+- Make sure you have the following dependencies (Runs only on macOS so far)
   - Ruby 3.0.0
   - Rails
   - PostgreSQL
 
 - Run `bundle install`
 
-- Run `rails server`
+- Run `bundle exec rails db:migrate`
+
+- Run `bundle exec rails server`
 
 ## Check it out!
 - Deployed at: TBA
 - Devpost Submission: 
-
-Things we may want to cover:
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
 
 ## Made with ❤️ by Pod 4.2.1 (Team 1):
 | Marc Jaramillo | Stewart Morales | Ainne Oum | Gerald Marquez |
