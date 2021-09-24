@@ -12,12 +12,12 @@
             <% end %>
           </div>
           <!--  populate cards with data -->
-          <ul id="EventList">
+          <section id="EventList">
             <% if @places.nil? %>
-              <p>Awesome date night ideas will show up here</p>
+              <p></p>
             <% else %>
               <% @places.each do |place|%>
-                <li class="event">
+                <div class="event">
                   <div class="eventImg">
                     <img src=<%=place["image_url"] %> >
                   </div>
@@ -38,13 +38,30 @@
                       <button id="add">Add Event</button>
                     </form>
                   </div>
-                </li>
+                </div>
               <% end %>
             <% end %>
-          </ul>
+          </section>
         </div>
     </div>
     <div class="container pd">
         <h2>Event Explorer</h2>
+        <section id="EventList">
+        <% if @events.nil? %>
+          <p>A blank canvas waiting for awesome date night ideas.</p>
+        <% else %>
+          <% @events.each do |event|%>
+            <div class="event">
+              <div class="eventImg">
+                <img src=<%=event["image_url"] %> >
+              </div>
+              <div class="eventInfo">
+                <h2><%= event["name"] %></h2>
+                <p><%= event["address"] %></p>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+        </section>
     </div>
 </section>

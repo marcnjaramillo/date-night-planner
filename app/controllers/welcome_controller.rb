@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController 
   def index
-    @event = Event.new
+    @events = Event.where(user_id: current_user.id)
     term = params[:term]
     location = params[:location]
     if params[:term].nil? && params[:location].nil?
