@@ -15,7 +15,7 @@ class EventsController < ApplicationController
 
   def create 
     @event = Event.new(event_params)
-    @user_events = User.find_by(id: params["event"]["user_id"])
+
     if @event.save
       redirect_to events_path
     else 
@@ -34,7 +34,7 @@ class EventsController < ApplicationController
 
   def destroy 
     @event.destroy 
-    redirect_to events_path
+    redirect_to authenticated_root_path
   end
 
   private 
