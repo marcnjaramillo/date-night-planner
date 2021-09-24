@@ -2,17 +2,23 @@
     <span class="navbar-toggle" id="js-navbar-toggle">
         <i class="fas fa-bars"></i>
     </span>
-    <a href="#" class="logo">Event Explorer</a>
+    
+    <% if user_signed_in? %>
+      <%=link_to "Date Night Planner", authenticated_root_path, class: "logo" %>
+    <% else %>
+      <%=link_to "Date Night Planner", unauthenticated_root_path, class: "logo" %>
+    <% end %>
+  
     <ul class="main-nav" id="js-menu">
-        <li>
-            <a href="#" class="nav-links">Log In</a>
-        </li>
-        <li>
-            <a href="#" class="nav-links">Sign Up</a>
-        </li>
-        <li>
-            <a href="#" class="nav-links">About/Contact</a>
-        </li>
+    <% if user_signed_in? %>
+      <%= link_to "Logout", destroy_user_session_path, class: "nav-links", method: :delete  %>
+    <% else %>
+      <li>
+          <%= link_to "Log In", new_user_session_path, class: "nav-links" %>
+      </li>
+      <li>
+        <%= link_to "Sign Up", new_user_registration_path, class: "nav-links" %>
+      </li>
+    <% end %>
     </ul>
-    <%= button_to "logout", destroy_user_session_path, method: :delete  %>
 </nav>
