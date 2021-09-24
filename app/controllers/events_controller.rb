@@ -15,6 +15,7 @@ class EventsController < ApplicationController
 
   def create 
     @event = Event.new(event_params)
+
     if @event.save
       redirect_to authenticated_root_path
     else
@@ -32,7 +33,7 @@ class EventsController < ApplicationController
 
   def destroy 
     @event.destroy 
-    render     
+    redirect_to authenticated_root_path
   end
 
   private 
