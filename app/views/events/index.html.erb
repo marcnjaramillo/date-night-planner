@@ -1,3 +1,4 @@
+<%= link_to 'Back', authenticated_root_url%>
 <ul id="EventList">
   <% if @events.nil? %>
     <p>Awesome date night ideas will show up here</p>
@@ -11,6 +12,12 @@
           <h2><%= event["name"] %></h2>
           <p><%= event["address"] %></p>
         </div>
+        <form action="<%= event_url(event.id)%>" method="POST">
+          <input type="hidden" name="_method" value="delete">
+          <input type="hidden" name="authenticity_token" value=<%= form_authenticity_token %> >                   
+          <input type="submit" value="delete event">
+        </form>
+
       </li>
     <% end %>
   <% end %>
