@@ -25,6 +25,18 @@
                     <h2><%= place["name"] %></h2>
                     <p><%= place["location"]["address1"] %> <%= place["location"]["address2"]%> <%= place["location"]["address3"] %></p>
                     <p><%= place["location"]["city"]%>, <%= place["location"]["state"]%> <%= place["location"]["zipcode"] %></p>
+                    <p>Rating: <%= place["rating"]%> 
+                    <% if place["price"] != ""%> 
+                        | Price: <%= place["price"]%>
+                    <% else %>
+                        | Price: N/A
+                    <% end %></p>
+                    <p><% if place["phone"] != ""%>
+                        T: <%= place["phone"]%>
+                    <% else %>
+                        T: Unavailable
+                    <%end%></p>
+                    <p><%= link_to "Yelp", place["url"], target: "_blank"%></p>
                     <form action="<%= events_path %>" method="POST"> 
                       <input type="hidden" name="authenticity_token" value=<%= form_authenticity_token %> >                   
                       <input type="hidden" name="event[image_url]" value=<%= place["image_url"] %> >

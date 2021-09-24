@@ -24,8 +24,9 @@ ActiveRecord::Schema.define(version: 2021_09_23_215935) do
     t.string "url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.string "price"
+    t.index ["user_id", "name"], name: "index_events_on_user_id_and_name", unique: true
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 
