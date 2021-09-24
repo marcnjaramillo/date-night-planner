@@ -5,7 +5,7 @@ class YelpService
   BUSINESS_PATH = "/v3/businesses/" 
   SEARCH_LIMIT = 25
 
-  API_KEY = Rails.application.credentials.yelp[:api_key]
+  API_KEY = Rails.application.credentials.dig(:yelp, :api_key)
 
   def self.search(term, location)
       url = "#{API_HOST}#{SEARCH_PATH}"
