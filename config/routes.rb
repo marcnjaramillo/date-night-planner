@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+
   devise_for :user
 
   devise_scope :user do
@@ -8,13 +10,11 @@ Rails.application.routes.draw do
     end
 
     unauthenticated do
-      root 'devise/sessions#new', as: :unauthenticated_root
+      root 'welcome#homepage', as: :unauthenticated_root
     end
   end
 
   resources :events
-
-  resources :venues
 
   get '/', to: 'welcome#index'
   post '/', to: 'welcome#index'

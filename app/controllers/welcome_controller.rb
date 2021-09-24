@@ -10,4 +10,9 @@ class WelcomeController < ApplicationController
       @places = results["businesses"]
     end 
   end
+
+  def homepage
+    
+  end
+  
 end

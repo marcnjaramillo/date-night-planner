@@ -1,14 +1,12 @@
 <section class="section mg">
     <div class="container pd">
         <div class="search">
-          <h2>Search for fun things to do!</h2>
-          <div id="searchform">
-            <%= form_with url: authenticated_root_path, method: :post do %>
-              <%= label_tag(:term, "") %>
-              <%= text_field_tag(:term) %>
-              <%= label_tag(:location, "") %>
-              <%= text_field_tag(:location) %>
-              <%= submit_tag("Search") %>
+          <h2>Date Explorer</h2>
+          <div>
+            <%= form_with url: authenticated_root_path, id: "search", method: :post do |form| %>
+              <%= form.text_field :term, placeholder: "What are you looking for?" %>
+              <%= form.text_field :location, placeholder: "Where do you want to be?" %>
+              <%= form.submit "Search", class: "button" %>
             <% end %>
           </div>
           <!--  populate cards with data -->
@@ -23,19 +21,23 @@
                   </div>
                   <div class="eventInfo">
                     <h2><%= place["name"] %></h2>
-                    <p><%= place["address"] %></p>
+                    <p><%= place["location"]["address1"] %> <%= place["location"]["address2"] %> <%= place["location"]["address3"] %></p>
+                    <p><%= place["location"]["city"] %>, <%= place["location"]["state"] %> <%= place["location"]["zipcode"] %></p>
                     <p>Rating: <%= place["rating"]%></p> 
-                    <% if place["price"] != ""%>
-                    <p>Price: <%= place["price"]%></p>
-                    <% else %>
-                    <p>Price: N/A</p>
-                    <% end %>
-                    <% if place["phone"] != ""%>
-                    <p>T: <%= place["phone"]%></p>
-                    <% else %>
-                    <p>T: Unavailable</p>
-                    <%end%>
-                    <p><%= link_to "Yelp", place["url"], target: "_blank"%></p>
+                    <p>
+                      <% if !place["price"].nil? %>
+                        Price: <%= place["price"]%>
+                      <% else %>
+                        Price: N/A
+                      <% end %>
+                    </p>
+                    <p>
+                      <% if !place["phone"].nil? %>
+                        T: <%= place["phone"]%>
+                      <% else %>
+                        T: Unavailable
+                      <%end%>
+                    </P>
                   </div>
                   <form action="<%= events_path %>" method="POST"> 
                     <input type="hidden" name="authenticity_token" value=<%= form_authenticity_token %> >                   
@@ -47,7 +49,10 @@
                     <input type="hidden" name="event[url]" value= "<%= place["url"] %>" >
                     <input type="hidden" name="event[phone]" value= "<%= place["phone"] %>" >
                     <input type="hidden" name="event[user_id]" value= "<%= current_user[:id] %>" >
-                    <button id="add">Add Event</button>
+                    <div class="flex">
+                      <%= link_to "Yelp", place["url"], target: "_blank", class: "yelp-button" %>
+                      <button class="button">Add Event</button>
+                    </div>
                   </form>
                 </div>
               <% end %>
@@ -56,7 +61,7 @@
         </div>
     </div>
     <div class="container pd">
-        <h2>Event Explorer</h2>
+        <h2>My Date Ideas</h2>
         <section id="EventList">
         <% if @events.nil? %>
           <p>A blank canvas waiting for awesome date night ideas.</p>
@@ -70,18 +75,24 @@
                 <h2><%= event["name"] %></h2>
                 <p><%= event["address"] %></p>
                 <p>Rating: <%= event["rating"]%></p> 
-                <% if event["price"] != ""%>
-                <p>Price: <%= event["price"]%></p>
-                <% else %>
-                <p>Price: N/A </p>
-                <% end %>
-                <% if event["phone"] != ""%>
-                <p>T: <%= event["phone"]%></p>
-                <% else %>
-                <p>T: Unavailable</p>
-                <%end%>
-                <p><%= link_to "Yelp", event["url"], target: "_blank"%></p>
-                <%= link_to "Delete", event_path(event.id), method: :delete %>
+                <p>
+                  <% if !event["price"].nil? %>
+                    Price: <%= event["price"] %>
+                  <% else %>
+                    Price: N/A
+                  <% end %>
+                </p>
+                <p>
+                  <% if !event["phone"].nil? %>
+                    T: <%= event["phone"] %>
+                  <% else %>
+                    T: Unavailable
+                  <%end%>
+                </P>
+                <div class="actions">
+                  <%= link_to "Yelp", event["url"], target: "_blank", class: "yelp-button" %>
+                  <%= button_to "Delete", event_path(event.id), method: :delete, class: "button" %>
+                </div>
               </div>
             </div>
           <% end %>

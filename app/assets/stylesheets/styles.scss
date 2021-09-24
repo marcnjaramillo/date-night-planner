@@ -1,0 +1,208 @@
+.section {
+  /* height: 90vh; */
+  /*need height for align-items to work*/
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center;
+  justify-content: center; */
+}
+
+.container {
+  display: block;
+  margin: 0 auto;
+  padding-bottom: 10px;
+  width: 90%;
+  min-height: 300px;
+  height: 100%;
+  overflow: scroll;
+  border: 1px solid #eaeaea;
+}
+
+.pd {
+  margin-top: 20px
+}
+
+.container h2 {
+  padding: 20px;
+  text-align: center;
+}
+
+.homepage {
+  background: linear-gradient(
+    rgba(122, 114, 192, 0.5), 
+    rgba(122, 114, 192, 0.5)
+  ),
+  image-url('night-out.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  padding-top: 10rem;
+  text-align: center;
+}
+
+.heading {
+  color: white;
+  font-size: 5rem;
+}
+
+.subheading {
+  color: white;
+  font-size: 3rem;
+  margin-top: 2rem;
+}
+
+.auth-wrapper {
+  text-align: center;
+  height: 100vh;
+  background-color: slateblue;
+  position: relative;
+}
+
+.auth-form {
+  h2 {
+    margin-bottom: 3rem;
+  }
+
+  background-color: white;
+  margin: 0;
+  position: absolute;
+  top: 40%;
+  left: 37%;
+  transform: translateY(-50%);
+  padding: 3rem 3rem;
+}
+
+.field {
+  margin-bottom: 1rem;
+}
+
+.button {
+  height: 40px;
+  width: 100px;
+  padding-left: 5px;
+  margin: 0.5rem;
+}
+
+.yelp-button {
+  background-color: #D32323;
+  border-width: 2px;
+  border-style: outset;
+  color: white;
+  padding: 10px 33px;
+  margin: 0.5rem;
+  text-decoration: none;
+}
+
+.signup-button {
+  background-color: slateblue;
+  border-width: 2px;
+  color: white;
+  padding: 10px 33px;
+  margin: 0.5rem;
+  text-decoration: none;
+}
+
+.login-button {
+  background-color: grey;
+  border-width: 2px;
+  color: white;
+  padding: 10px 33px;
+  margin: 0.5rem;
+  text-decoration: none;
+}
+
+.actions {
+  display: flex;
+}
+
+.home-buttons {
+  font-size: 2.5rem;
+  margin-top: 8rem;
+}
+
+#searchBar {
+  display: block;
+  margin: 0 auto;
+  width: 80%;
+  height: 32px;
+  border-radius: 3px;
+  border: 1px solid #eaeaea;
+  padding: 5px 10px;
+  font-size: 12px;
+}
+
+#search {
+  text-align: center;
+}
+
+input[type=text] {
+  width: 30%;
+  padding: 10px 10px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+input[type=email], input[type=password] {
+  width: 100%;
+  padding: 10px 10px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+@media (min-width: 800px) {
+  .section {
+      margin: 0 auto;
+      flex-direction: row;
+      width: 90%;
+      height: 80vh;
+  }
+  .mg {
+      margin-top: 100px;
+  }
+  .container {
+      padding: 5px;
+      height: 600px;
+  }
+  .pd {
+      margin: 10px
+  }
+}
+
+
+/********** card UI */
+
+#EventList {
+  padding-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-gap: 5px;
+}
+
+
+/* javascrip class,
+styles that are dynamically created to each populated data*/
+
+.event {
+  background-color: #eaeaea;
+  border-radius: 3px;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.eventImg>img {
+  /* max-height: 200px; */
+  width: 100%;
+}
+
+.eventInfo {
+  padding: 10px
+}
+
+.eventInfo>button {
+  height: 40px;
+  width: 100px;
+  padding-left: 5px
+}
